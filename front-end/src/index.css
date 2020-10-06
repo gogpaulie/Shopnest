@@ -5,4 +5,13 @@ main {
 .navlogo {
   width: 80px;
   height: 85px;
+  margin-right: 20px;
+}
+
+h3 {
+  padding: 1rem 0;
+}
+
+.rating span {
+  margin: 0.05rem;
 }
