@@ -75,7 +75,11 @@ const ProductScreen = ({ history, match }) => {
                 <ListGroupItem>
                   <Row>
                     <Col>Status:</Col>
-                    <Col>
+                    <Col
+                      style={{
+                        color: product.countInStock > 0 ? 'green' : 'red',
+                      }}
+                    >
                       {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
                     </Col>
                   </Row>
