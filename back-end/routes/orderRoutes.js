@@ -4,6 +4,7 @@ import {
   addOrderItems,
   getOrderById,
   updateOrderToPaid,
+  updateOrderToDelivered,
   getMyOrders,
   getOrders,
 } from '../controllers/orderController.js';
@@ -15,5 +16,6 @@ router.route('/myorders').get(protect, getMyOrders);
 // it to search from an id
 router.route('/:id').get(protect, getOrderById);
 router.route('/:id/pay').put(protect, updateOrderToPaid);
+router.route('/:id/deliver').put(protect, admin, updateOrderToDelivered);
 
 export default router;
