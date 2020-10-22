@@ -39,6 +39,20 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Fetch products by category
+// @route   GET /api/products/:category
+// @access  Public
+const getProductByCategory = asyncHandler(async (req, res) => {
+  const products = await Product.find({ category: req.params.category });
+
+  if (products) {
+    res.json(products);
+  } else {
+    res.status(404);
+    throw new Error('Category not found');
+  }
+});
+
 // @desc    Delete a product
 // @route   DELETE /api/products/:id
 // @access  Private/Admin
@@ -157,6 +171,7 @@ const getTopProducts = asyncHandler(async (req, res) => {
 export {
   getProducts,
   getProductById,
+  getProductByCategory,
   deleteProduct,
   updateProduct,
   createProduct,

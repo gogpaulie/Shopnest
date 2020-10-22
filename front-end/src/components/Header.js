@@ -12,7 +12,9 @@ const Header = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-
+  const productList = useSelector((state) => state.productList);
+  const { products } = productList;
+  const uniqueCategory = [...new Set(products.map((item) => item.category))];
   const logoutHandler = () => {
     dispatch(logout());
   };
@@ -29,6 +31,16 @@ const Header = () => {
 
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
+            <NavDropdown title='Categories' id='categories'>
+              {uniqueCategory.map((category) => (
+                <LinkContainer
+                  to={`/categories/${category}`}
+                  key={category.toString()}
+                >
+                  <NavDropdown.Item>{category}</NavDropdown.Item>
+                </LinkContainer>
+              ))}
+            </NavDropdown>
             <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav className='ml-auto'>
               <LinkContainer to='/cart'>
